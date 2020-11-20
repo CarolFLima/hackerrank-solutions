@@ -3,7 +3,7 @@ from collections import Counter
 def sherlockAndAnagrams(s):
     n = len(s)
     subs = {}
-    for i in range(1,n + 1):
+    for i in range(1,n):
         for j in range(n - i + 1):
             
             m = j + i - 1
