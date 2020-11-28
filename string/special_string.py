@@ -1,17 +1,24 @@
 
 def substrCount(n, s):
-    counter = 0
-    for i in range(n+1):
-        for j in range(n-i+1):
-            sub = s[j:j+i]
-            if i%2 == 1 and i>1:
-                list_sub = list(sub)
-                list_sub[i//2] = list_sub[0]
-                sub = "".join(list_sub)
-            if len(list(set(sub))) == 1:
-                counter += 1
+    counter = len(s)
+    index = 0
+
+    while index < len(s):
+        repeated = 0
+        pointer = 1
+        while (index<len(s)-1 and s[index]==s[index+1]):
+            repeated += 1
+            index += 1
+        counter += (repeated*(repeated+1))//2
+
+        while index-pointer>=0 and index+pointer<len(s) and s[index+pointer]==s[index-1] and s[index-pointer]==s[index-1]:
+            counter += 1
+            pointer += 1
+        
+        index += 1
+
     return counter
 
-s = 'abcbaba'
+s = 'aaaa'
 n = len(s)
 substrCount(n, s)
