@@ -5,38 +5,55 @@ def abbreviation(a, b):
     len_a = len(a)
     len_b = len(b)
     
-    aux = [[0]*len_b]*len_a
+    aux = [[0 for i in range(len_b)] for j in range(len_a)] 
     
     aux[0][0] = 1
-    
-    for i in range(1, len_a):
-        if a[i-1].islower():
+    flag_upper = a[0].isupper()
+
+    for i in range(1,len(a)):
+        if a[i].isupper() and flag_upper:
+            aux[i][0] = 0
+        elif a[i].isupper() and not flag_upper and a[i] == b[0]:
             aux[i][0] = 1
-            
-    for i in range(1, len_a):
-        for j in range(1, len_b):
-            if a[i-1].isupper():
-                if (a[i-1]==b[j-1]) and aux[i-1][j-1]:
-                    aux[i][j] = 1
+            flag_upper = True
+        elif a[i].isupper() and not flag_upper and a[i] != b[0]:
+            aux[i][0] = 0
+            flag_upper = True
+        elif a[i].islower() and a[i].upper() == b[0] and not flag_upper:
+            aux[i][0] = 1
+        else:
+            aux[i][0] = aux[i-1][0]
+
+    for i in range(1,len(b)):
+        aux[0][i] = 0
+
+    for i in range(1, len(a)):
+        for j in range(1, len(b)):
+            if a[i].upper() == b[j] and a[i].islower():
+                aux[i][j] = aux[i-1][j-1] or aux[i-1][j]
+            elif a[i].upper() == b[j] and a[i].isupper():
+                aux[i][j] = aux[i-1][j-1]
+            elif a[i].upper() != b[j] and a[i].islower():
+                aux[i][j] = aux[i-1][j]
             else:
-                if (a[i-1].upper()==b[j-1]) and aux[i-1][j-1]:
-                    aux[i][j] = 1
-                else:
-                    aux[i][j] = aux[i-1][j]
+                aux[i][j] = 0
     
     if aux[-1][-1]:
         return 'YES'
     else:
         return 'NO'
+    
+
 
 if __name__ == '__main__':
-    q = int(input())
+    # q = int(input())
+    # for q_itr in range(q):
+        # a = input()
 
-    for q_itr in range(q):
-        a = input()
+        # b = input()
 
-        b = input()
+        # result = abbreviation(a, b)
+    c = 0
+    if c:
+        print("sada")
 
-        result = abbreviation(a, b)
-
-        print(result)
