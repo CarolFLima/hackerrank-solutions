@@ -8,3 +8,13 @@ def hourglassSum(arr):
             if current_sum > max_sum:
                 max_sum = current_sum
     return max_sum
+
+
+arr = [[1, 1, 1, 0, 0, 0],
+[0, 1, 0, 0, 0, 0],
+[1, 1, 1, 0, 0, 0],
+[0, 0, 2, 4, 4, 0],
+[0, 0, 0, 2, 0, 0],
+[0, 0, 1, 2, 4, 0]]
+
+print(hourglassSum(arr))
