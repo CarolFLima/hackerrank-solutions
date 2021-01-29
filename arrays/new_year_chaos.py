@@ -8,3 +8,7 @@ def minimumBribes(q):
             if q[j] > person:
                 counter = counter + 1
     print(counter)
+
+
+arr = [2, 1, 5, 3, 4]
+minimumBribes(arr)
