@@ -18,3 +18,8 @@ def arrayManipulation(n, queries):
             max_val = sum_val
     return max_val
 
+arr = [[1, 2, 100],
+[2, 5, 100],
+[3, 4, 100]]
+
+print(arrayManipulation(5, arr))
