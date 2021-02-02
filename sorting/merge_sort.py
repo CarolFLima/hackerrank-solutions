@@ -33,3 +33,6 @@ def countInversions(arr):
         return total
     else:
         return 0
+    
+arr = [2, 1, 3, 1, 2]
+print(countInversions(arr))
