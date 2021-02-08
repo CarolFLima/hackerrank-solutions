@@ -11,8 +11,9 @@ def whatFlavors(cost, money):
                 pairs[value] = i
 
 t = int(input())
+
 for t_itr in range(t):
     money = int(input())
     n = int(input())
     cost = list(map(int, input().rstrip().split()))
-    whatFlavors(cost, money)
+    print(whatFlavors(cost, money))
