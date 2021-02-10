@@ -15,3 +15,7 @@ def minimumSwaps(arr, n):
             visited_arr[current_pos] = True
             current_pos = arr[current_pos]
     return total_swaps
+
+
+arr = [1, 3, 5, 2, 4, 6, 7]
+print(minimumSwaps(arr, len(arr)))
