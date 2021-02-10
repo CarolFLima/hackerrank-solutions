@@ -5,3 +5,6 @@ def checkMagazine(magazine, note):
         print("Yes")
     else:
         print("No")
+
+      
+checkMagazine('two times three is not four', 'two times two is four')
