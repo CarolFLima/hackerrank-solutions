@@ -11,7 +11,7 @@ from collections import defaultdict
 # Complete the roadsAndLibraries function below.
 def roadsAndLibraries(n, c_lib, c_road, cities):
 
-    if c_lib<c_road:
+    if c_lib<=c_road:
         return c_lib*n
 
     graph = defaultdict(lambda: [])
@@ -20,12 +20,23 @@ def roadsAndLibraries(n, c_lib, c_road, cities):
         graph[x].append(y)
         graph[y].append(x)
 
-    visited = [0] * n
+    visited = set()
 
     def dfs(i):
-        visited[i-1] = 1
-        return sum(dfs(j) for j in graph[i] if not visited[j-1]) + 1
-    return sum((dfs(i) - 1) * c_road + c_lib for i in range(1, n + 1) if not visited[i-1])
+        visited.add(i)
+        total = 1
+        if i in graph:
+            for neighbor in graph[i]:
+                if neighbor not in visited:
+                    total += dfs(neighbor)
+        return total
+
+    connected_cities=[]
+    for i in range(1,n+1):
+        if i not in visited:
+            connected_cities.append(dfs(i))
+    return n*c_road+(c_lib-c_road)*len(connected_cities)
+
 
 
 if __name__ == '__main__':
