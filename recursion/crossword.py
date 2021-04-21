@@ -9,6 +9,8 @@ import sys
 # Complete the crosswordPuzzle function below.
 def crosswordPuzzle(crossword, words):
     
+    words_arr = words.split(';')
+
     class Word():
         def __init__(self, start_x, start_y, direction):
             self.start_x = start_x
@@ -17,11 +19,11 @@ def crosswordPuzzle(crossword, words):
 
         def set_len(self, len):
             self.len = len
+            print('Tamanho: {}'.format(len))
 
     word_pool = []
 
     def create_word(i, j, direction):
-        # print('Variaveis i: {}, j: {}, dir: {}'.format(i, j, direction))
         word = Word(i, j, direction)
 
         counter_len = 0
@@ -55,17 +57,28 @@ def crosswordPuzzle(crossword, words):
         # print('Tamanho da piscina de palavras  {}'.format(len(word_pool)))
     solved = False
     pointer = 0
+    used_words = []
+
+    def fill_word(pointer):
+        i = 0
+        while i < 4:
+            curr_len = len(words[i])
+            if curr_len == word_pool[pointer].len and words_arr[i] not in used_words:
+                break
+            i += 1
+        
+        if  words_arr[i] not in used_words:
+            print('Escolhido: {}'.format(words_arr[i]))
+            used_words.append(words[i])
+            
+        
     while not solved:
-        curr_word = word_pool[pointer]
-
-        if curr_word.direction == 'across':
-            pass
-        else:
-            pass
-
-
-
-
+        fill_word(pointer)
+        pointer += 1
+        if pointer == 3:
+            solved = True
+    
+    print('Used words: {}'.format(used_words))
     return crossword
 
 if __name__ == '__main__':
