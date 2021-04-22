@@ -62,20 +62,19 @@ def crosswordPuzzle(crossword, words):
     def fill_word(pointer):
         i = 0
         while i < 4:
-            curr_len = len(words[i])
+            curr_len = len(words_arr[i])
             if curr_len == word_pool[pointer].len and words_arr[i] not in used_words:
                 break
             i += 1
         
         if  words_arr[i] not in used_words:
-            print('Escolhido: {}'.format(words_arr[i]))
-            used_words.append(words[i])
+            used_words.append(words_arr[i])
             
         
     while not solved:
         fill_word(pointer)
         pointer += 1
-        if pointer == 3:
+        if pointer == 4:
             solved = True
     
     print('Used words: {}'.format(used_words))
