@@ -69,13 +69,20 @@ def crosswordPuzzle(crossword, words):
         
         if  words_arr[i] not in used_words:
             used_words.append(words_arr[i])
-            
+       
+    def remove_word():
+        pass
+
         
     while not solved:
         fill_word(pointer)
         pointer += 1
-        if pointer == 4:
+
+
+
+        if pointer == len(words_arr):
             solved = True
+        
     
     print('Used words: {}'.format(used_words))
     return crossword
