@@ -1,0 +1,69 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+from collections import defaultdict
+
+#
+# Complete the 'componentsInGraph' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts 2D_INTEGER_ARRAY gb as parameter.
+#
+
+
+
+def componentsInGraph(gb):
+    graph = defaultdict(lambda: [])
+
+    for g in gb:
+        a, b = g[0], g[1]
+        graph[a].append(b)
+        graph[b].append(a)
+
+    low = high = None
+
+    U = set(graph)
+    S = set()
+    for u in U:
+        if u not in S:
+            i = 0
+            V = [u]
+            T = set()
+            T.add(u)
+            
+            while i < len(V):
+                v = V[i]
+                S.add(v)
+                i += 1
+                for w in graph[v]:
+                    if w not in T:
+                        T.add(w)
+                        V.append(w)
+
+            if low is None or i < low:
+                low = i
+            if high is None or i > high:
+                high = i
+    return [low, high]
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    gb = []
+
+    for _ in range(n):
+        gb.append(list(map(int, input().rstrip().split())))
+
+    result = componentsInGraph(gb)
+
+    fptr.write(' '.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
+    
