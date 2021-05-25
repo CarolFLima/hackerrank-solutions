@@ -17,27 +17,24 @@ import sys
 
 def waiter(number, q):
     primes = [i for i in range(2, 9750) if all(i % j for j in range(2, i))]
-
     A = []
     B = []
     answers = []
     A.append(number)
-    #arr[::-1]
     A_temp = []
     B_temp = []
     
     for i in range(q):
         A_temp = []
         prime = primes[i]
-        for num in A[i]:
+        while A[i] != []:
+            num = A[i].pop()
             if num % prime:
                 A_temp.append(num)
             else:
                 B_temp.append(num)
         A.append(A_temp)
-        B.append(B_temp)
         
-
         while B_temp != []:
             answers.append(B_temp.pop())
         
